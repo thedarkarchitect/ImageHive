@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
@@ -35,8 +36,6 @@ fun LayoutScreen(
     navController: NavHostController
 ) {
 
-//    val context = LocalContext.current.applicationContext
-
     val selected = remember {
         mutableStateOf(Icons.Default.Home)
     }
@@ -52,6 +51,11 @@ fun LayoutScreen(
                     scrollBehavior = scrollBehavior,
                     title = "All"
                 )
+            } else if (selected.value == Icons.Default.Favorite){
+                TopAppBar(
+                    scrollBehavior = scrollBehavior,
+                    title = "Favorites"
+                )
             }
         },
         bottomBar = {
@@ -66,7 +70,7 @@ fun LayoutScreen(
                     modifier = modifier.weight(1f)){
                     Icon(
                         Icons.Default.Home,
-                        contentDescription = null,
+                        contentDescription = "Home icon",
                         modifier = modifier.size(26.dp),
                         tint = if (selected.value == Icons.Default.Home) Color.White else Color.DarkGray
                     )
@@ -80,9 +84,23 @@ fun LayoutScreen(
                     modifier = modifier.weight(1f)){
                     Icon(
                         Icons.Default.Search,
-                        contentDescription = null,
+                        contentDescription = "Search icon",
                         modifier = modifier.size(26.dp),
                         tint = if (selected.value == Icons.Default.Search) Color.White else Color.DarkGray
+                    )
+                }
+
+                IconButton(
+                    onClick = {
+                        selected.value = Icons.Default.Favorite
+                        navController.navigate(Routes.FavoritesScreen.screen)
+                    },
+                    modifier = modifier.weight(1f)){
+                    Icon(
+                        Icons.Default.Favorite,
+                        contentDescription = "Favorite icon",
+                        modifier = modifier.size(26.dp),
+                        tint = if (selected.value == Icons.Default.Favorite) Color.White else Color.DarkGray
                     )
                 }
             }

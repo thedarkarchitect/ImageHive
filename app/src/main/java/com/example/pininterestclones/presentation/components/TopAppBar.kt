@@ -29,7 +29,8 @@ fun TopAppBar(
     scrollBehavior: TopAppBarScrollBehavior,
     title: String
 ) {
-    var color = if(isSystemInDarkTheme()) Color.White else Color.Black
+    val color = if(isSystemInDarkTheme()) Color.White else Color.Black
+
     CenterAlignedTopAppBar(
         modifier = modifier,
         scrollBehavior = scrollBehavior,
@@ -44,7 +45,7 @@ fun TopAppBar(
                     )
                     Canvas(
                         modifier = modifier
-                            .fillMaxWidth(fraction = 0.11f)
+                            .fillMaxWidth(fraction = if(title != "All") 0.3851f else 0.11f)
                     ) {
                         drawLine(
                             color = color,
@@ -64,7 +65,7 @@ fun TopAppBar(
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview()
+@Preview
 @Composable
 private fun TopPreview() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -84,7 +85,7 @@ private fun TopPreview2() {
     PinInterestClonesTheme {
         TopAppBar(
             scrollBehavior = scrollBehavior,
-            title = "All"
+            title = "Favorites"
         )
     }
 }

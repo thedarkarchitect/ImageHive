@@ -1,6 +1,8 @@
 package com.example.pininterestclones.utils
 
+import com.example.pininterestclones.BuildConfig
+
 object Constants {
     const val BASEURL: String = "https://api.unsplash.com/"
-    const val APIKEY: String = "oEXfQu-y2GUDT7ghHw0T8Ad9x2qBVWAi4vlFMJWYbvs"
+    const val APIKEY: String = BuildConfig.API_KEY
 }
